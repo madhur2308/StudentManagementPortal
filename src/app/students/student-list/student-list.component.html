@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">First Name</th>
+    <th scope="col">Family Name</th>
+    <th scope="col">Date of Birth</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let student of students; let i = index">
+  <tr id="{{student.studentId}}">
+    <th scope="row">{{i+1}}</th>
+    <td>{{student.firstName}}</td>
+    <td>{{student.familyName}}</td>
+    <td>{{student.dateOfBirth | date:'yyyy-MM-dd'}}</td>
+  </tr>
+  </tbody>
+</table>
