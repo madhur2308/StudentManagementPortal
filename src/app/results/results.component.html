@@ -1,1 +1,5 @@
-<p>results works!</p>
+<app-new-result></app-new-result>
+<button mat-icon-button (click)="onRefresh()">
+  <mat-icon>refresh</mat-icon>
+</button>
+<app-result-list [results]="results"></app-result-list>

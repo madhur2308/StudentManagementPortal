@@ -18,6 +18,8 @@ import { CourseListComponent } from './courses/course-list/course-list.component
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import { ResultListComponent } from './results/result-list/result-list.component';
+import { NewResultComponent } from './results/new-result/new-result.component';
 
 
 const appRoutes: Route[] = [
@@ -39,6 +41,8 @@ const appRoutes: Route[] = [
     NewStudentComponent,
     NewCourseComponent,
     CourseListComponent,
+    ResultListComponent,
+    NewResultComponent,
   ],
   imports: [
     BrowserModule,
