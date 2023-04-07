@@ -1,7 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {Student} from "./student.model";
 import {StudentService} from "../http-services/StudentService";
-import {BsModalService} from "ngx-bootstrap/modal";
+import {SnackBarService} from "../util/SnackBarService";
 
 
 @Component({
@@ -11,18 +11,27 @@ import {BsModalService} from "ngx-bootstrap/modal";
 })
 export class StudentsComponent {
 
-  students: Student[] = []
-  error = "";
+  students: Student[] = [];
 
-  constructor(private studentService: StudentService, private bsModalService: BsModalService) {
+  constructor(private _studentService: StudentService,
+              private _snackBarService: SnackBarService) {
   }
 
   ngOnInit() {
-    this.studentService.getAllStudents()
+    this.loadAllStudents();
+  }
+
+  onRefresh() {
+    this.loadAllStudents();
+  }
+
+  loadAllStudents() {
+    this._studentService.getAllStudents()
       .subscribe((students: Student[]) => {
         this.students = students;
+        this._snackBarService.openSnackBar('Students loaded', 'success');
       }, error => {
-        this.error = error;
+        this._snackBarService.openSnackBar('Failed to load students, Try Again!', 'failed');
       });
   }
 }

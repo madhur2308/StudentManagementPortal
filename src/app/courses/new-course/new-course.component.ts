@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {CourseService} from "../../http-services/CourseService";
 import {Course} from "../course.model";
+import {SnackBarService} from "../../util/SnackBarService";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-new-course',
@@ -10,14 +11,22 @@ import {Course} from "../course.model";
 })
 export class NewCourseComponent {
 
-  constructor(private http: HttpClient, private courseService: CourseService) {
+  constructor(private _courseService: CourseService,
+              private _snackBarService: SnackBarService) {
   }
 
-  onCreateCourse(newCourse: Course) {
-    this.courseService.createNewCourse(newCourse)
+  onCreateCourse(form: NgForm, newCourse: Course) {
+    this._courseService.createNewCourse(newCourse)
       .subscribe(
-        response => console.log(response),
-          err => console.log(err))
+        response => {
+          this._snackBarService.openSnackBar('New Course Created', 'success');
+          this.clearForm(form)
+        },
+        err => this._snackBarService.openSnackBar('Creation of course failed', 'failed'))
+  }
+
+  clearForm(form: NgForm) {
+    form.resetForm();
   }
 
 }

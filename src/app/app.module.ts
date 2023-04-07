@@ -13,9 +13,11 @@ import {HttpClientModule} from "@angular/common/http";
 import { ResultsComponent } from './results/results.component';
 import { NewStudentComponent } from './students/new-student/new-student.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { NewCourseComponent } from './courses/new-course/new-course.component';
 import { CourseListComponent } from './courses/course-list/course-list.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 
 const appRoutes: Route[] = [
@@ -39,13 +41,14 @@ const appRoutes: Route[] = [
     CourseListComponent,
   ],
   imports: [
-    ModalModule.forRoot(),
-
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

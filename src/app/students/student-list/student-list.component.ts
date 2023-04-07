@@ -9,7 +9,6 @@ import {Student} from "../student.model";
 export class StudentListComponent {
   @Input()
   students: Student[] = []
-
   constructor() {}
 
 }

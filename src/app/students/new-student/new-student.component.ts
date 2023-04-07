@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Component, ViewChild} from '@angular/core';
 import {Student} from "../student.model";
 import {StudentService} from "../../http-services/StudentService";
+import {SnackBarService} from "../../util/SnackBarService";
+import {NgForm} from "@angular/forms";
 
 
 @Component({
@@ -11,10 +12,22 @@ import {StudentService} from "../../http-services/StudentService";
 })
 export class NewStudentComponent {
 
-  constructor(private http: HttpClient, private studentService: StudentService) {
+  @ViewChild('f') newStudentForm: NgForm | undefined;
+  constructor(private _studentService: StudentService,
+              private _snackBarService: SnackBarService) {
   }
 
-  onCreateStudent(newStudent: Student) {
-    this.studentService.createNewStudent(newStudent)
+  onCreateStudent(form: NgForm, newStudent: Student) {
+    this._studentService.createNewStudent(newStudent)
+      .subscribe(
+        response => {
+          this._snackBarService.openSnackBar('New Student Added', 'success');
+          this.clearForm(form);
+        },
+        err => this._snackBarService.openSnackBar('Failed to add the student', 'failed'))
+  }
+
+  clearForm(form: NgForm) {
+    form.resetForm();
   }
 }

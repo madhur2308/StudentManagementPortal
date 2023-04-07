@@ -10,14 +10,13 @@ export class StudentService {
   }
 
   public createNewStudent(newStudent: Student) {
-    this.http
-      .post<Student[]>(
+    return this.http
+      .post<{ success: boolean, data: string }>(
         'http://localhost:1234/students',
         newStudent
-      )
-      .subscribe((students: Student[]) => {
-        console.log(students);
-      });
+      ).pipe(map(response => {
+        return response.data;
+      }));
   }
 
   public getAllStudents() {

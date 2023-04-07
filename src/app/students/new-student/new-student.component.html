@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <form #newStudentForm="ngForm" (ngSubmit)="onCreateStudent(newStudentForm.value)">
+      <form #newStudentForm="ngForm"
+            (ngSubmit)="onCreateStudent(newStudentForm, newStudentForm.value)">
         <div class="form-group row p-1">
           <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
           <div class="col-sm-6">
