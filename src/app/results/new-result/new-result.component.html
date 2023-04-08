@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form #newScoreForm="ngForm"
+            (ngSubmit)="onSubmitScore(newScoreForm, newScoreForm.value)">
+        <div class="form-group row p-1">
+          <label for="courseId" class="col-sm-2 col-form-label">Course Name</label>
+          <div class="col-sm-6">
+            <select id="courseId" required name="courseId" ngModel>
+              <option *ngFor="let course of courses"
+                      value="{{course.courseId}}">
+                {{course.courseName}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row p-1">
+          <label for="studentId" class="col-sm-2 col-form-label">Student Name</label>
+          <div class="col-sm-6">
+            <select required id="studentId" name="studentId" ngModel>
+              <option *ngFor="let student of students" value="{{student.studentId}}">
+                {{student.firstName}} {{student.firstName}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row p-1">
+          <label for="score" class="col-sm-2 col-form-label">Score</label>
+          <div class="col-sm-6">
+            <select required id="score" name="score" ngModel>
+              <option *ngFor="let score of scores" value="{{score}}">
+                {{score}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!newScoreForm.valid">
+          Submit Score
+        </button>
+      </form>
+    </div>
+  </div>
+  <hr/>
+</div>
